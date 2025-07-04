@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3Hausa CEX & DEX Toolkits</title>
+    <!-- Link to the generated CSS file -->
+    <link href="public/output.css" rel="stylesheet">
+    <!-- Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @keyframes gradient-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(-45deg, #0d1117, #111827, #161b22, #0d1117);
+            background-size: 400% 400%;
+            animation: gradient-bg 15s ease infinite;
+            color: #c9d1d9;
+        }
+        .toolkit-card {
+            background-color: rgba(22, 27, 34, 0.5);
+            border: 1px solid #30363d;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .toolkit-card:hover {
+            border-color: #58a6ff;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+        }
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+            transform: scale(1);
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .btn-primary { background-color: #238636; color: white; box-shadow: 0 0 10px rgba(35, 134, 54, 0.5); }
+        .btn-primary:hover { background-color: #2ea043; }
+        .btn-secondary { background-color: #21262d; border: 1px solid #30363d; color: #58a6ff; }
+        .btn-secondary:hover { border-color: #58a6ff; background-color: #30363d;}
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #30363d;
+            background-color: #0d1117;
+            border-radius: 0.375rem;
+            color: #c9d1d9;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #58a6ff;
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+        }
+        .tool-view {
+            background-color: #161b22;
+            min-height: 100vh;
+        }
+        .locked-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(13, 17, 23, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            z-index: 10;
+            text-align: center;
+            padding: 1rem;
+        }
+        .btn-analyze {
+            background: linear-gradient(90deg, #8e2de2, #4a00e0);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(142, 45, 226, 0.5);
+        }
+        .btn-analyze:hover {
+            box-shadow: 0 0 25px rgba(142, 45, 226, 0.8);
+            transform: translateY(-2px);
+        }
+        .fade-in {
+            animation: fadeInAnimation 0.7s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInAnimation {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Hub View -->
+    <div id="hub-view">
+        <div class="container mx-auto p-4 md:p-8 min-h-screen flex flex-col justify-center">
+            <div class="text-center mb-12 fade-in">
+                <img src="public/web3hausa-logo.png" alt="Web3Hausa Logo" class="mx-auto mb-6 h-28 w-28 object-contain">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-white">Web3Hausa Toolkits</h1>
+                <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">Specialized tools for CEX and DEX traders in Nigeria, built to give you a professional edge.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- CEX Toolkit Card -->
+                <div class="toolkit-card fade-in" style="animation-delay: 200ms;">
+                    <div class="flex-grow">
+                        <h2 class="text-3xl font-bold text-white mb-4"><i class="fas fa-building-columns text-blue-400 mr-3"></i> CEX Toolkit: P2P NGN Pro</h2>
+                        <p class="text-gray-400 mb-6">A complete dashboard for CEX traders to find P2P rates, manage risk, and analyze the market.</p>
+                        <div class="text-center bg-gray-900/50 p-4 rounded-lg mb-6">
+                            <p class="text-3xl font-bold text-white">₦3,000 <span class="text-base font-normal text-gray-400">/ month</span></p>
+                        </div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i> Live P2P Rate Dashboard</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-400 mr-3 mt-1"></i> **Premium:** P2P Arbitrage Calculator (with fees)</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-400 mr-3 mt-1"></i> **Premium:** Full Market Analysis & High-Impact Narratives</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-400 mr-3 mt-1"></i> **Premium:** Trade Setup & Risk Calculator</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-400 mr-3 mt-1"></i> **Premium:** Interactive Technical Analysis Chart</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-secondary mt-8" onclick="showToolkit('cex-view')">Launch P2P NGN Pro</button>
+                </div>
+                <!-- DEX Toolkit Card -->
+                <div class="toolkit-card fade-in" style="animation-delay: 400ms;">
+                    <div class="flex-grow">
+                        <h2 class="text-3xl font-bold text-white mb-4"><i class="fas fa-shield-halved text-purple-400 mr-3"></i> DEX Toolkit: Token Guard</h2>
+                        <p class="text-gray-400 mb-6">Scan any Solana token for risks and analyze its liquidity, momentum, and smart money activity.</p>
+                         <div class="text-center bg-gray-900/50 p-4 rounded-lg mb-6">
+                            <p class="text-3xl font-bold text-white">₦3,000 <span class="text-base font-normal text-gray-400">/ month</span></p>
+                        </div>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i> Basic Token Safety Scan</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-400 mr-3 mt-1"></i> **Premium:** Full Security & Liquidity Analysis</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-400 mr-3 mt-1"></i> **Premium:** Smart Money & Developer Dossier</li>
+                            <li class="flex items-start"><i class="fas fa-star text-yellow-400 mr-3 mt-1"></i> **Premium:** Small-Cap Gem Finder & Tokenomics Score</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-secondary mt-8" onclick="showToolkit('dex-view')">Launch Token Guard</button>
+                </div>
+            </div>
+             <div class="text-center mt-8 analyzer-card border-purple-500 fade-in" style="animation-delay: 600ms;">
+                <h3 class="text-2xl font-bold text-white"><i class="fas fa-bolt text-yellow-400"></i> Pro Bundle Deal</h3>
+                <p class="text-gray-400 mt-2">Get both CEX & DEX Toolkits for only **₦5,000 / month** and save!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CEX Toolkit View -->
+    <div id="cex-view" class="hidden tool-view p-4 md:p-8">
+        <button onclick="showHubView()" class="mb-8 text-gray-400 hover:text-white transition"><i class="fas fa-arrow-left mr-2"></i> Back to Hub</button>
+        <h1 class="text-4xl font-bold text-center text-white mb-8">P2P NGN Pro</h1>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- P2P Rates (Free) -->
+                <div class="analyzer-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">Live P2P Rates (USDT/NGN)</h2>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-3 items-center bg-gray-900/50 p-4 rounded-lg">
+                            <h3 class="font-bold text-lg">Binance P2P</h3>
+                            <div><span class="text-gray-400">BUY:</span> <span class="font-semibold text-xl">1,450.50</span></div>
+                            <div><span class="text-gray-400">SELL:</span> <span class="font-semibold text-xl text-green-400">1,452.00</span></div>
+                        </div>
+                        <div class="grid grid-cols-3 items-center bg-gray-900/50 p-4 rounded-lg">
+                            <h3 class="font-bold text-lg">Bybit P2P</h3>
+                            <div><span class="text-gray-400">BUY:</span> <span class="font-semibold text-xl text-red-400">1,449.00</span></div>
+                            <div><span class="text-gray-400">SELL:</span> <span class="font-semibold text-xl">1,451.50</span></div>
+                        </div>
+                    </div>
+                     <p class="text-xs text-gray-500 mt-4 text-center">Note: P2P rates are for demonstration purposes.</p>
+                </div>
+                
+                <!-- P2P Arbitrage (Premium) -->
+                <div class="analyzer-card relative">
+                    <h2 class="text-2xl font-bold text-white mb-4">P2P Arbitrage Calculator</h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="font-semibold">Amount (USDT)</label>
+                            <input type="number" id="p2p-amount" class="input-field mt-1" placeholder="e.g., 100">
+                        </div>
+                        <div>
+                            <label class="font-semibold">Transaction Fees (NGN)</label>
+                            <input type="number" id="p2p-fees" class="input-field mt-1" placeholder="e.g., 100">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-4 w-full" onclick="calculateP2PArbitrage()">Calculate Profit</button>
+                    <div id="p2p-result" class="mt-4 text-center font-semibold"></div>
+                    <div class="cex-lock locked-overlay">
+                        <i class="fas fa-lock text-4xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">Unlock Arbitrage Calculator</h3>
+                    </div>
+                </div>
+
+                <!-- Other Premium Tools -->
+                <div class="analyzer-card relative">
+                    <div id="cex-premium-content" class="space-y-8">
+                        <!-- Full Market Analysis -->
+                        <div>
+                             <h2 class="text-2xl font-bold text-white mb-4">Full Market Analysis</h2>
+                             <button id="cex-analyze-button" onclick="fetchCexAnalysis()" class="btn-analyze text-lg w-full">
+                                <i class="fas fa-sync-alt mr-2"></i> Analyze Market Conditions
+                            </button>
+                            <div id="cex-analysis-results" class="hidden mt-6 space-y-6">
+                                <div id="cex-data-display" class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm"></div>
+                                <div id="cex-overall-analysis-card"></div>
+                                <div id="cex-detailed-analysis" class="space-y-6"></div>
+                                <div class="text-xs text-center text-gray-500 mt-2">
+                                    Market data powered by CoinGecko API. Fear & Greed Index from Alternative.me.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Narrative Tracker -->
+                        <div>
+                            <h2 class="text-2xl font-bold text-white mb-4">Market Narrative Tracker</h2>
+                             <div class="border-2 border-red-500/50 p-4 rounded-lg mb-4 bg-red-500/10">
+                                <h3 class="font-bold text-lg text-red-400 flex items-center"><i class="fas fa-bolt mr-2"></i> High-Impact Narrative Feed</h3>
+                                <ul class="text-sm space-y-2 mt-2">
+                                    <li><span class="text-gray-400">[2 minutes ago]</span> ⚡️ Elon Musk tweets about DOGE.</li>
+                                    <li><span class="text-gray-400">[45 minutes ago]</span> 📈 US SEC Chairman mentions "Crypto Regulation" in speech.</li>
+                                    <li><span class="text-gray-400">[2 hours ago]</span> 🏦 BlackRock CEO praises Bitcoin on live television.</li>
+                                </ul>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="font-semibold text-lg text-purple-400">General Narratives</h3>
+                                    <ul class="list-disc list-inside text-gray-400 text-sm">
+                                        <li>AI Tokens: Major tech conference announces new AI integrations with blockchain.</li>
+                                        <li>GameFi: A new play-to-earn game has reached 1 million active users.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="text-xs text-center text-gray-500 mt-4">Narratives summarized by AI from Cointelegraph, Decrypt, and other leading news outlets.</p>
+                        </div>
+
+                        <!-- Trade Setup Calculator -->
+                        <div>
+                            <h2 class="text-2xl font-bold text-white mb-4">Trade Setup & Risk Calculator</h2>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div><label class="font-semibold">Account Balance ($)</label><input type="number" id="trade-balance" class="input-field mt-1" placeholder="500"></div>
+                                <div><label class="font-semibold">Risk per Trade (%)</label><input type="number" id="trade-risk" class="input-field mt-1" placeholder="2"></div>
+                                <div><label class="font-semibold">Entry Price ($)</label><input type="number" id="trade-entry" class="input-field mt-1" placeholder="1.00"></div>
+                                <div><label class="font-semibold">Stop Loss ($)</label><input type="number" id="trade-stop" class="input-field mt-1" placeholder="0.95"></div>
+                                <div><label class="font-semibold">Take Profit ($)</label><input type="number" id="trade-profit" class="input-field mt-1" placeholder="1.15"></div>
+                                <div class="md:col-span-3"><button class="btn btn-primary mt-2" onclick="calculateTradeSetup()">Calculate Setup</button></div>
+                            </div>
+                            <div id="trade-setup-result" class="mt-4 grid md:grid-cols-3 gap-4 text-center"></div>
+                        </div>
+                    </div>
+                    <div class="cex-lock locked-overlay">
+                        <i class="fas fa-lock text-4xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">Unlock Premium Tools</h3>
+                        <p class="text-gray-300">Subscribe to unlock all advanced CEX tools.</p>
+                    </div>
+                </div>
+                
+                <!-- Technical Analysis Chart (Premium) -->
+                <div class="analyzer-card relative">
+                    <h2 class="text-2xl font-bold text-white mb-4">Technical Analysis Chart</h2>
+                    <div id="cex-tradingview-chart" class="h-[400px] rounded-lg overflow-hidden"></div>
+                    <div class="cex-lock locked-overlay">
+                        <i class="fas fa-lock text-4xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">Unlock Interactive Chart</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: CEX Premium Unlock -->
+            <div class="analyzer-card h-fit">
+                 <h2 class="text-2xl font-bold text-white mb-2"><i class="fas fa-star text-yellow-400"></i> Unlock P2P Pro</h2>
+                 <div class="text-center bg-gray-900/50 p-4 rounded-lg mb-4">
+                    <p class="text-3xl font-bold text-white">₦3,000 <span class="text-base font-normal text-gray-400">/ month</span></p>
+                    <p class="text-sm text-gray-400 mt-1">or get the Pro Bundle for ₦5,000</p>
+                 </div>
+                 <p class="text-gray-400 mb-4 text-sm text-center">Bayan ka biya, <a href="https://forms.gle/1WertRpNuBPWx1Hf6" target="_blank" class="text-blue-400 hover:underline">latsa nan ka cike fom</a> don karɓar code naka.</p>
+                 <div class="bg-gray-900 p-4 rounded-lg text-center mb-4">
+                    <p><strong>Bank:</strong> OPay | <strong>Acc:</strong> 7067679691 | <strong>Name:</strong> Abubakar Abubakar</p>
+                 </div>
+                 <label for="cex-premium-code" class="font-semibold mb-2 block">Enter Premium Code</label>
+                 <input type="text" id="cex-premium-code" class="input-field" placeholder="Enter code...">
+                 <button onclick="unlockPremium('cex')" class="btn btn-primary mt-3">Unlock</button>
+                 <p id="cex-error" class="text-red-400 text-center mt-2 h-4"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEX Toolkit View -->
+    <div id="dex-view" class="hidden tool-view p-4 md:p-8">
+        <button onclick="showHubView()" class="mb-8 text-gray-400 hover:text-white transition"><i class="fas fa-arrow-left mr-2"></i> Back to Hub</button>
+        <h1 class="text-4xl font-bold text-center text-white mb-8">Token Guard (Solana)</h1>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Scanner Input -->
+                <div class="analyzer-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">Scan Solana Token</h2>
+                    <label class="font-semibold">Token Contract Address</label>
+                    <input type="text" id="token-address" class="input-field mt-2" placeholder="Paste Solana contract address here...">
+                    <button id="scan-button" class="btn btn-primary mt-4" onclick="scanToken()">Scan Now</button>
+                </div>
+                <!-- Scan Results -->
+                <div class="analyzer-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">Security Report</h2>
+                    <div id="report-placeholder" class="text-center py-8 text-gray-500">
+                        <i class="fas fa-shield-alt text-4xl mb-4"></i>
+                        <p>Enter a contract address to see the security report.</p>
+                    </div>
+                    <div id="report-content" class="hidden">
+                        <div class="text-center mb-6">
+                            <label class="text-gray-400">Overall Safety Score</label>
+                            <p id="safety-score" class="text-6xl font-bold"></p>
+                        </div>
+                        <div class="relative">
+                            <div id="detailed-report" class="grid grid-cols-2 gap-4"></div>
+                            <div id="dex-premium-lock" class="dex-lock locked-overlay">
+                                <i class="fas fa-lock text-4xl text-yellow-400 mb-4"></i>
+                                <h3 class="text-xl font-bold text-white">Unlock Full Report</h3>
+                                <p class="text-gray-300">Get detailed checks on liquidity, ownership, and tokenomics.</p>
+                            </div>
+                        </div>
+                        <div class="text-xs text-center text-gray-500 mt-4">
+                            Security analysis powered by GoPlus Security & other data providers.
+                        </div>
+                    </div>
+                </div>
+                 <!-- Developer Dossier (Premium) -->
+                <div class="analyzer-card relative">
+                    <h2 class="text-2xl font-bold text-white mb-4">Developer Dossier</h2>
+                    <div id="developer-dossier-content" class="space-y-4"></div>
+                    <div id="developer-dossier-placeholder" class="text-center py-8 text-gray-500">
+                        <i class="fas fa-user-secret text-4xl mb-4"></i>
+                        <p>Scan a token to analyze the developer's history.</p>
+                    </div>
+                    <div id="developer-dossier-lock" class="dex-lock locked-overlay">
+                        <i class="fas fa-lock text-4xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">Unlock Developer Dossier</h3>
+                    </div>
+                </div>
+                 <!-- New & Small-Cap Gem Finder (Premium) -->
+                <div class="analyzer-card relative">
+                    <h2 class="text-2xl font-bold text-white mb-4">New & Small-Cap Gem Finder</h2>
+                    <div id="gem-finder-content" class="space-y-4"></div>
+                     <div id="gem-finder-placeholder" class="text-center py-8 text-gray-500">
+                        <i class="fas fa-gem text-4xl mb-4"></i>
+                        <p>Scan a token to analyze its age and tokenomics.</p>
+                    </div>
+                    <div id="gem-finder-lock" class="dex-lock locked-overlay">
+                        <i class="fas fa-lock text-4xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">Unlock Gem Finder</h3>
+                    </div>
+                </div>
+                 <!-- Smart Money Tracker (Premium) -->
+                <div class="analyzer-card relative">
+                    <h2 class="text-2xl font-bold text-white mb-4">Smart Money & Whale Tracker</h2>
+                    <div id="smart-money-content" class="space-y-4"></div>
+                     <div id="smart-money-placeholder" class="text-center py-8 text-gray-500">
+                        <i class="fas fa-fish text-4xl mb-4"></i>
+                        <p>Scan a token to track smart money activity.</p>
+                    </div>
+                    <div id="smart-money-lock" class="dex-lock locked-overlay">
+                        <i class="fas fa-lock text-4xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">Unlock Smart Money Tracker</h3>
+                    </div>
+                </div>
+                 <!-- Trade Simulator (Premium) -->
+                <div class="analyzer-card relative">
+                    <h2 class="text-2xl font-bold text-white mb-4">Trade Simulator & Slippage Calculator</h2>
+                    <div id="trade-simulator-content" class="space-y-4">
+                        <div>
+                            <label class="font-semibold">Buy Amount ($)</label>
+                            <input type="number" id="buy-amount" class="input-field mt-1" placeholder="e.g., 500">
+                        </div>
+                        <button class="btn btn-primary w-full" onclick="simulateTrade()">Simulate Trade</button>
+                        <div id="slippage-result" class="text-center font-semibold mt-4"></div>
+                    </div>
+                    <div id="trade-simulator-placeholder" class="text-center py-8 text-gray-500">
+                        <i class="fas fa-calculator text-4xl mb-4"></i>
+                        <p>Scan a token to simulate your trade.</p>
+                    </div>
+                    <div id="trade-simulator-lock" class="dex-lock locked-overlay">
+                        <i class="fas fa-lock text-4xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white">Unlock Trade Simulator</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- DEX Premium Unlock -->
+            <div class="analyzer-card h-fit">
+                 <h2 class="text-2xl font-bold text-white mb-2"><i class="fas fa-star text-yellow-400"></i> Unlock Token Guard Pro</h2>
+                 <div class="text-center bg-gray-900/50 p-4 rounded-lg mb-4">
+                    <p class="text-3xl font-bold text-white">₦3,000 <span class="text-base font-normal text-gray-400">/ month</span></p>
+                    <p class="text-sm text-gray-400 mt-1">or get the Pro Bundle for ₦5,000</p>
+                 </div>
+                 <p class="text-gray-400 mb-4 text-sm text-center">Bayan ka biya, <a href="https://forms.gle/1WertRpNuBPWx1Hf6" target="_blank" class="text-blue-400 hover:underline">latsa nan ka cike fom</a> don karɓar code naka.</p>
+                 <div class="bg-gray-900 p-4 rounded-lg text-center mb-4">
+                    <p><strong>Bank:</strong> OPay | <strong>Acc:</strong> 7067679691 | <strong>Name:</strong> Abubakar Abubakar</p>
+                 </div>
+                 <label for="dex-premium-code" class="font-semibold mb-2 block">Enter Premium Code</label>
+                 <input type="text" id="dex-premium-code" class="input-field" placeholder="Enter code...">
+                 <button onclick="unlockPremium('dex')" class="btn btn-primary mt-3">Unlock</button>
+                 <p id="dex-error" class="text-red-400 text-center mt-2 h-4"></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script>
+        const CEX_CODES = ['CEXPRO2025', 'CEX123', 'CEX789', 'W3H-CEX-001', 'W3H-CEX-002', 'W3H-CEX-003', 'W3H-CEX-004', 'W3H-CEX-005', 'W3H-CEX-006', 'W3H-CEX-007', 'W3H-CEX-008', 'W3H-CEX-009', 'W3H-CEX-010', 'W3H-CEX-011', 'W3H-CEX-012', 'W3H-CEX-013', 'W3H-CEX-014', 'W3H-CEX-015', 'W3H-CEX-016', 'W3H-CEX-017', 'W3H-CEX-018', 'W3H-CEX-019', 'W3H-CEX-020', 'W3H-CEX-021', 'W3H-CEX-022', 'W3H-CEX-023', 'W3H-CEX-024', 'W3H-CEX-025', 'W3H-CEX-026', 'W3H-CEX-027', 'W3H-CEX-028', 'W3H-CEX-029', 'W3H-CEX-030', 'W3H-CEX-031', 'W3H-CEX-032', 'W3H-CEX-033', 'W3H-CEX-034', 'W3H-CEX-035', 'W3H-CEX-036', 'W3H-CEX-037', 'W3H-CEX-038', 'W3H-CEX-039', 'W3H-CEX-040', 'W3H-CEX-041', 'W3H-CEX-042', 'W3H-CEX-043', 'W3H-CEX-044', 'W3H-CEX-045', 'W3H-CEX-046', 'W3H-CEX-047', 'W3H-CEX-048', 'W3H-CEX-049', 'W3H-CEX-050', 'W3H-CEX-051', 'W3H-CEX-052', 'W3H-CEX-053', 'W3H-CEX-054', 'W3H-CEX-055', 'W3H-CEX-056', 'W3H-CEX-057', 'W3H-CEX-058', 'W3H-CEX-059', 'W3H-CEX-060', 'W3H-CEX-061', 'W3H-CEX-062', 'W3H-CEX-063', 'W3H-CEX-064', 'W3H-CEX-065', 'W3H-CEX-066', 'W3H-CEX-067', 'W3H-CEX-068', 'W3H-CEX-069', 'W3H-CEX-070', 'W3H-CEX-071', 'W3H-CEX-072', 'W3H-CEX-073', 'W3H-CEX-074', 'W3H-CEX-075', 'W3H-CEX-076', 'W3H-CEX-077', 'W3H-CEX-078', 'W3H-CEX-079', 'W3H-CEX-080', 'W3H-CEX-081', 'W3H-CEX-082', 'W3H-CEX-083', 'W3H-CEX-084', 'W3H-CEX-085', 'W3H-CEX-086', 'W3H-CEX-087', 'W3H-CEX-088', 'W3H-CEX-089', 'W3H-CEX-090', 'W3H-CEX-091', 'W3H-CEX-092', 'W3H-CEX-093', 'W3H-CEX-094', 'W3H-CEX-095', 'W3H-CEX-096', 'W3H-CEX-097', 'W3H-CEX-098', 'W3H-CEX-099', 'W3H-CEX-100'];
+        const DEX_CODES = ['DEXGUARD2025', 'DEX456', 'DEXABC', 'W3H-DEX-001', 'W3H-DEX-002', 'W3H-DEX-003', 'W3H-DEX-004', 'W3H-DEX-005', 'W3H-DEX-006', 'W3H-DEX-007', 'W3H-DEX-008', 'W3H-DEX-009', 'W3H-DEX-010', 'W3H-DEX-011', 'W3H-DEX-012', 'W3H-DEX-013', 'W3H-DEX-014', 'W3H-DEX-015', 'W3H-DEX-016', 'W3H-DEX-017', 'W3H-DEX-018', 'W3H-DEX-019', 'W3H-DEX-020', 'W3H-DEX-021', 'W3H-DEX-022', 'W3H-DEX-023', 'W3H-DEX-024', 'W3H-DEX-025', 'W3H-DEX-026', 'W3H-DEX-027', 'W3H-DEX-028', 'W3H-DEX-029', 'W3H-DEX-030', 'W3H-DEX-031', 'W3H-DEX-032', 'W3H-DEX-033', 'W3H-DEX-034', 'W3H-DEX-035', 'W3H-DEX-036', 'W3H-DEX-037', 'W3H-DEX-038', 'W3H-DEX-039', 'W3H-DEX-040', 'W3H-DEX-041', 'W3H-DEX-042', 'W3H-DEX-043', 'W3H-DEX-044', 'W3H-DEX-045', 'W3H-DEX-046', 'W3H-DEX-047', 'W3H-DEX-048', 'W3H-DEX-049', 'W3H-DEX-050', 'W3H-DEX-051', 'W3H-DEX-052', 'W3H-DEX-053', 'W3H-DEX-054', 'W3H-DEX-055', 'W3H-DEX-056', 'W3H-DEX-057', 'W3H-DEX-058', 'W3H-DEX-059', 'W3H-DEX-060', 'W3H-DEX-061', 'W3H-DEX-062', 'W3H-DEX-063', 'W3H-DEX-064', 'W3H-DEX-065', 'W3H-DEX-066', 'W3H-DEX-067', 'W3H-DEX-068', 'W3H-DEX-069', 'W3H-DEX-070', 'W3H-DEX-071', 'W3H-DEX-072', 'W3H-DEX-073', 'W3H-DEX-074', 'W3H-DEX-075', 'W3H-DEX-076', 'W3H-DEX-077', 'W3H-DEX-078', 'W3H-DEX-079', 'W3H-DEX-080', 'W3H-DEX-081', 'W3H-DEX-082', 'W3H-DEX-083', 'W3H-DEX-084', 'W3H-DEX-085', 'W3H-DEX-086', 'W3H-DEX-087', 'W3H-DEX-088', 'W3H-DEX-089', 'W3H-DEX-090', 'W3H-DEX-091', 'W3H-DEX-092', 'W3H-DEX-093', 'W3H-DEX-094', 'W3H-DEX-095', 'W3H-DEX-096', 'W3H-DEX-097', 'W3H-DEX-098', 'W3H-DEX-099', 'W3H-DEX-100'];
+        const BUNDLE_CODES = ['PROBUNDLE2025', 'PRO789', 'PROXYZ', 'W3H-PRO-A8X7', 'W3H-PRO-9B2C', 'W3H-PRO-K4M5', 'W3H-PRO-F6P8', 'W3H-PRO-Z1Q9', 'W3H-PRO-T7R3', 'W3H-PRO-E2S6', 'W3H-PRO-V5W1', 'W3H-PRO-L9Y4', 'W3H-PRO-G3B7', 'W3H-PRO-N8D2', 'W3H-PRO-H1J5', 'W3H-PRO-C4X9', 'W3H-PRO-M7Z6', 'W3H-PRO-U2V3', 'W3H-PRO-I6P0', 'W3H-PRO-O3T5', 'W3H-PRO-S8R1', 'W3H-PRO-Y4W7', 'W3H-PRO-B9G2', 'W3H-PRO-D5N8', 'W3H-PRO-J1H4', 'W3H-PRO-X6C7', 'W3H-PRO-Z3M9', 'W3H-PRO-V2U5', 'W3H-PRO-P7I1', 'W3H-PRO-T5O3', 'W3H-PRO-R1S8', 'W3H-PRO-W7Y4', 'W3H-PRO-G2B9', 'W3H-PRO-N8D5', 'W3H-PRO-H4J1', 'W3H-PRO-C7X6', 'W3H-PRO-M9Z3', 'W3H-PRO-U5V2', 'W3H-PRO-I1P7', 'W3H-PRO-O3T5', 'W3H-PRO-S8R1', 'W3H-PRO-Y4W7', 'W3H-PRO-B9G2', 'W3H-PRO-D5N8', 'W3H-PRO-J1H4', 'W3H-PRO-X6C7', 'W3H-PRO-Z3M9', 'W3H-PRO-V2U5', 'W3H-PRO-P7I1', 'W3H-PRO-T5O3', 'W3H-PRO-R1S8', 'W3H-PRO-W7Y4', 'W3H-PRO-G2B9'];
+        let cexChartLoaded = false;
+
+        function showHubView() {
+            document.getElementById('hub-view').classList.remove('hidden');
+            document.getElementById('cex-view').classList.add('hidden');
+            document.getElementById('dex-view').classList.add('hidden');
+        }
+
+        function showToolkit(viewId) {
+            document.getElementById('hub-view').classList.add('hidden');
+            document.getElementById(viewId).classList.remove('hidden');
+        }
+
+        function unlockPremium(type) {
+            const codeInput = document.getElementById(`${type}-premium-code`);
+            const errorEl = document.getElementById(`${type}-error`);
+            const enteredCode = codeInput.value.trim().toUpperCase();
+
+            let unlocked = false;
+            let isBundle = BUNDLE_CODES.includes(enteredCode);
+
+            if (type === 'cex' && (CEX_CODES.includes(enteredCode) || isBundle)) {
+                document.querySelectorAll('.cex-lock').forEach(el => el.classList.add('hidden'));
+                setTimeout(() => {
+                    if (!cexChartLoaded) { loadTradingViewChart('cex-tradingview-chart'); cexChartLoaded = true; }
+                }, 100);
+                unlocked = true;
+            } else if (type === 'dex' && (DEX_CODES.includes(enteredCode) || isBundle)) {
+                document.querySelectorAll('.dex-lock').forEach(el => el.classList.add('hidden'));
+                unlocked = true;
+            }
+
+            if (unlocked) {
+                errorEl.textContent = '';
+                codeInput.value = 'Success!';
+                codeInput.disabled = true;
+                document.querySelector(`#${type}-view .btn-primary`).disabled = true;
+            } else {
+                errorEl.textContent = 'Invalid Code';
+                setTimeout(() => { errorEl.textContent = ''; }, 3000);
+            }
+        }
+
+        function loadTradingViewChart(containerId) {
+            new TradingView.widget({
+                "width": "100%", "height": "100%", "symbol": "BINANCE:BTCUSDT", "interval": "D",
+                "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en",
+                "toolbar_bg": "#f1f3f6", "enable_publishing": false, "allow_symbol_change": true,
+                "container_id": containerId
+            });
+        }
+
+        // CEX Toolkit Logic
+        function calculateP2PArbitrage() {
+            const amount = parseFloat(document.getElementById('p2p-amount').value);
+            const fees = parseFloat(document.getElementById('p2p-fees').value) || 0;
+            if (isNaN(amount) || amount <= 0) { alert('Please enter a valid amount.'); return; }
+            const grossProfit = (amount * 1452.00) - (amount * 1449.00);
+            const netProfit = grossProfit - fees;
+            document.getElementById('p2p-result').innerHTML = `
+                <p>Gross Profit: <span class="text-gray-400">₦${grossProfit.toLocaleString()}</span></p>
+                <p class="text-xl mt-2">Net Profit (after fees): <span class="text-yellow-400">₦${netProfit.toLocaleString()}</span></p>
+            `;
+        }
+        
+        function calculateTradeSetup() {
+            const balance = parseFloat(document.getElementById('trade-balance').value);
+            const riskPercent = parseFloat(document.getElementById('trade-risk').value);
+            const entry = parseFloat(document.getElementById('trade-entry').value);
+            const stop = parseFloat(document.getElementById('trade-stop').value);
+            const profit = parseFloat(document.getElementById('trade-profit').value);
+            const resultEl = document.getElementById('trade-setup-result');
+
+            if ([balance, riskPercent, entry, stop, profit].some(isNaN)) {
+                resultEl.innerHTML = `<p class="text-red-400 col-span-3">Please fill all fields correctly.</p>`;
+                return;
+            }
+
+            const riskAmount = balance * (riskPercent / 100);
+            const stopLossPercent = ((entry - stop) / entry) * 100;
+            if (stopLossPercent <= 0) {
+                 resultEl.innerHTML = `<p class="text-red-400 col-span-3">Stop loss must be below entry price.</p>`;
+                 return;
+            }
+            const positionSize = riskAmount / (stopLossPercent / 100);
+            const rewardAmount = (positionSize / entry) * (profit - entry);
+            const riskRewardRatio = rewardAmount / riskAmount;
+
+            resultEl.innerHTML = `
+                <div class="bg-gray-900/50 p-3 rounded-lg"><label class="text-gray-400 block">Position Size</label><p class="font-semibold text-lg text-yellow-400">$${positionSize.toFixed(2)}</p></div>
+                <div class="bg-gray-900/50 p-3 rounded-lg"><label class="text-gray-400 block">Risk/Reward</label><p class="font-semibold text-lg ${riskRewardRatio >= 2 ? 'text-green-400' : 'text-red-400'}">1 : ${riskRewardRatio.toFixed(2)}</p></div>
+                <div class="bg-gray-900/50 p-3 rounded-lg"><label class="text-gray-400 block">Potential Profit</label><p class="font-semibold text-lg text-green-400">$${rewardAmount.toFixed(2)}</p></div>
+            `;
+        }
+
+        async function fetchCexAnalysis() {
+            const button = document.getElementById('cex-analyze-button');
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Analyzing...';
+            try {
+                const [globalRes, fearGreedRes] = await Promise.all([
+                    fetch('https://api.coingecko.com/api/v3/global'),
+                    fetch('https://api.alternative.me/fng/?limit=1')
+                ]);
+                if (!globalRes.ok || !fearGreedRes.ok) throw new Error('API Error');
+                const globalData = await globalRes.json();
+                const fearGreedData = await fearGreedRes.json();
+                const marketData = {
+                    totalMarketCap: globalData.data.total_market_cap.usd,
+                    marketCapChange24h: globalData.data.market_cap_change_percentage_24h_usd,
+                    totalVolume: globalData.data.total_volume.usd,
+                    btcDominance: globalData.data.market_cap_percentage.btc,
+                    ethDominance: globalData.data.market_cap_percentage.eth,
+                    fearGreedIndex: fearGreedData.data[0].value,
+                    volumeChange24h: 0 
+                };
+                displayCexAnalysis(marketData, fearGreedData.data[0].value_classification);
+            } catch (error) {
+                alert('Could not fetch market data.');
+            } finally {
+                button.disabled = false;
+                button.innerHTML = '<i class="fas fa-sync-alt mr-2"></i> Analyze Market Conditions';
+            }
+        }
+
+        function displayCexAnalysis(marketData, fearGreedClassification) {
+            document.getElementById('cex-analysis-results').classList.remove('hidden');
+            document.getElementById('cex-data-display').innerHTML = `
+                <div class="bg-gray-900/50 p-3 rounded-lg"><label class="text-gray-400 block">Total Market Cap</label><p class="font-semibold text-lg">$${Number(marketData.totalMarketCap.toFixed(0)).toLocaleString()}</p></div>
+                <div class="bg-gray-900/50 p-3 rounded-lg"><label class="text-gray-400 block">Market Cap 24h %</label><p class="font-semibold text-lg ${marketData.marketCapChange24h >= 0 ? 'text-green-400' : 'text-red-400'}">${marketData.marketCapChange24h.toFixed(2)}%</p></div>
+                <div class="bg-gray-900/50 p-3 rounded-lg"><label class="text-gray-400 block">Fear & Greed</label><p class="font-semibold text-lg">${marketData.fearGreedIndex} (${fearGreedClassification})</p></div>
+            `;
+            runAndDisplayFullAnalysis(marketData, 'cex');
+        }
+
+        // DEX Toolkit Logic
+        async function scanToken() {
+            if (!document.getElementById('token-address').value) { alert('Please enter a contract address.'); return; }
+            const button = document.getElementById('scan-button');
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Scanning...';
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            ['report-content', 'developer-dossier-content', 'gem-finder-content', 'smart-money-content', 'trade-simulator-content'].forEach(id => {
+                const placeholderId = id.replace('-content', '-placeholder');
+                const contentEl = document.getElementById(id);
+                const placeholderEl = document.getElementById(placeholderId);
+                if (placeholderEl) placeholderEl.classList.add('hidden');
+                if (contentEl) contentEl.classList.remove('hidden');
+            });
+            
+            // --- Simulate Security Report ---
+            const score = Math.floor(Math.random() * 45) + 40;
+            const scoreEl = document.getElementById('safety-score');
+            scoreEl.textContent = score;
+            scoreEl.style.color = score > 70 ? '#22c55e' : score > 50 ? '#f59e0b' : '#ef4444';
+            document.getElementById('detailed-report').innerHTML = [{l:'Contract Verified?',v:true},{l:'Freeze Authority Enabled?',v:false},{l:'Liquidity Locked?',v:true},{l:'Owner has Minting Power?',v:true},{l:'Trading is Taxed?',v:false},{l:'Sufficient Liquidity?',v:true}].map(i=>`<div class="bg-gray-900/50 p-3 rounded-lg flex justify-between items-center"><span>${i.l}</span>${i.v?'<i class="fas fa-check-circle text-green-500"></i>':'<i class="fas fa-times-circle text-red-500"></i>'}</div>`).join('');
+            
+            // --- Simulate Developer Dossier ---
+            const devDossierContent = document.getElementById('developer-dossier-content');
+            const isNewDev = Math.random() > 0.5;
+            if (isNewDev) {
+                devDossierContent.innerHTML = `<div class="text-center font-bold p-2 rounded-lg bg-yellow-500/10 text-yellow-400">⚠️ Caution: This is the developer's first project.</div>`;
+            } else {
+                 devDossierContent.innerHTML = `<div class="text-center font-bold p-2 rounded-lg bg-green-500/10 text-green-400">✅ Clean History: Developer has launched other successful projects.</div>`;
+            }
+
+            // --- Simulate Gem Finder Analysis ---
+            const gemFinderContent = document.getElementById('gem-finder-content');
+            const isNewToken = Math.random() > 0.5;
+            const tokenomicsGood = Math.random() > 0.5;
+            gemFinderContent.innerHTML = `
+                <div class="text-center font-bold p-2 rounded-lg ${isNewToken ? 'bg-red-500/10 text-red-400' : 'bg-green-500/10 text-green-400'}">
+                    ${isNewToken ? '⚠️ Extreme Risk: This token is brand new.' : '✅ Established Trend: This token has survived the initial volatile period.'}
+                </div>
+                <div class="text-center font-bold p-2 rounded-lg mt-2 ${tokenomicsGood ? 'bg-green-500/10 text-green-400' : 'bg-red-500/10 text-red-400'}">
+                    ${tokenomicsGood ? '✅ Healthy Distribution: Low risk of a dump.' : '⛔️ Highly Centralized: Top wallets hold a large percentage.'}
+                </div>
+            `;
+
+            // --- Simulate Smart Money Analysis ---
+            const smartMoneyContent = document.getElementById('smart-money-content');
+            const explorerUrl = 'https://solscan.io/account/';
+            const scenarios = [
+                { status: 'Strong', text: 'Multiple profitable wallets are buying.', color: 'text-green-400', icon: 'fa-fire' },
+                { status: 'Emerging', text: 'A few smaller smart wallets are testing the waters.', color: 'text-yellow-400', icon: 'fa-seedling' },
+                { status: 'None', text: 'No significant smart money activity detected yet.', color: 'text-gray-400', icon: 'fa-water' }
+            ];
+            const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+            const wallet1 = '3Mbren4n1Y5b6q6i4g2G3i2g2j2j2j2j2j2j2j2j2j2j'; 
+            const wallet2 = '5oV3b1a4g2G3i2g2j2j2j2j2j2j2j2j2j2j2j2j2'; 
+            let walletHtml = '';
+            if (scenario.status !== 'None') {
+                walletHtml = `
+                    <div class="text-sm space-y-2 mt-4">
+                        <div class="bg-gray-900/50 p-2 rounded-lg truncate">✅ Wallet <a href="${explorerUrl}${wallet1}" target="_blank" class="text-blue-400 hover:underline">${wallet1.substring(0,6)}...${wallet1.substring(wallet1.length - 4)}</a> bought $${Math.floor(Math.random()*10000+1000).toLocaleString()} worth.</div>
+                        <div class="bg-gray-900/50 p-2 rounded-lg truncate">✅ Wallet <a href="${explorerUrl}${wallet2}" target="_blank" class="text-blue-400 hover:underline">${wallet2.substring(0,6)}...${wallet2.substring(wallet2.length - 4)}</a> is holding $${Math.floor(Math.random()*50000+5000).toLocaleString()} worth.</div>
+                    </div>
+                `;
+            }
+            smartMoneyContent.innerHTML = `
+                <div class="text-center">
+                    <h3 class="font-bold text-lg ${scenario.color}"><i class="fas ${scenario.icon} mr-2"></i> ${scenario.status} Smart Money Interest</h3>
+                    <p class="text-gray-400 text-sm">${scenario.text}</p>
+                </div>
+                ${walletHtml}
+            `;
+
+            button.disabled = false;
+            button.innerHTML = 'Scan Now';
+        }
+        
+        function simulateTrade() {
+            const buyAmount = parseFloat(document.getElementById('buy-amount').value);
+            if(isNaN(buyAmount) || buyAmount <= 0) {
+                alert('Please enter a valid buy amount.');
+                return;
+            }
+            const priceImpact = (Math.random() * 5 + 1).toFixed(2); // Random impact 1-6%
+            const resultEl = document.getElementById('slippage-result');
+            resultEl.innerHTML = `
+                <p>A <span class="text-yellow-400">$${buyAmount.toLocaleString()}</span> buy would have an estimated <span class="text-red-400">${priceImpact}%</span> price impact.</p>
+                <p class="text-xs text-gray-400 mt-2">Consider smaller buys to reduce slippage.</p>
+            `;
+        }
+
+        // Shared Analysis Logic
+        function runAndDisplayFullAnalysis(marketData, typePrefix) {
+            const data = { marketCapChange: marketData.marketCapChange24h||0, volumeChange: marketData.volumeChange24h||0, btcDominance: marketData.btcDominance||50, ethDominance: marketData.ethDominance||15, fearGreed: marketData.fearGreedIndex||50, totalVolume: marketData.totalVolume||0, totalMarketCap: marketData.totalMarketCap||0 };
+            const volatility = Math.abs(data.marketCapChange) + Math.abs(data.volumeChange);
+            const sentiment = data.fearGreed;
+            const altcoinDominance = 100 - data.btcDominance - data.ethDominance;
+            const analysis = {
+                scalping: getScalpingRecommendation(calculateScalpingScore(data, volatility, (data.totalVolume/data.totalMarketCap)*100)),
+                dayTrading: getDayTradingRecommendation(calculateDayTradingScore(data, volatility, altcoinDominance)),
+                swingTrading: getSwingTradingRecommendation(calculateSwingTradingScore(data, sentiment, altcoinDominance)),
+                marketCondition: getOverallMarketCondition(data, volatility, sentiment, altcoinDominance),
+            };
+            const overallCard = document.getElementById(`${typePrefix}-overall-analysis-card`);
+            if(overallCard) {
+                overallCard.className = `analyzer-card ${analysis.marketCondition.bgColor} border-white/20`;
+                overallCard.innerHTML = `<div class="flex items-center"><i class="fas ${analysis.marketCondition.icon} text-4xl text-white mr-4"></i><div><h3 class="text-xl font-bold text-white">Market Status: ${analysis.marketCondition.condition}</h3><p class="text-white/90">${getSentimentLabel(data.fearGreed)}</p></div></div>`;
+            }
+            document.getElementById(`${typePrefix}-detailed-analysis`).innerHTML = `${createAnalysisCard(analysis.scalping,'Scalping','fa-bolt')}${createAnalysisCard(analysis.dayTrading,'Day Trading','fa-clock')}${createAnalysisCard(analysis.swingTrading,'Swing Trading','fa-chart-line')}`;
+        }
+        function createAnalysisCard(r,t,i){const g={excellent:'from-green-400 to-emerald-500',good:'from-yellow-400 to-orange-400',poor:'from-red-400 to-pink-500'},s={excellent:'fa-check-circle text-green-300',good:'fa-check-circle text-yellow-300',poor:'fa-times-circle text-red-300'};return`<div class="bg-gray-900/50 p-6 rounded-lg"><div class="flex items-center justify-between mb-4"><div class="flex items-center"><div class="p-3 rounded-lg bg-gradient-to-br ${g[r.status]} mr-4"><i class="fas ${i} text-2xl text-white"></i></div><div><h3 class="text-xl font-bold text-white">${t}</h3><p class="text-gray-300">${r.recommendation}</p></div></div><div class="flex items-center"><i class="fas ${s[r.status]} text-2xl"></i><span class="ml-2 text-2xl font-bold text-white">${r.score}</span><span class="text-gray-400">/100</span></div></div><div class="grid md:grid-cols-2 gap-6 text-sm"><div><h4 class="font-semibold text-green-400 mb-2">Best Practices</h4><ul class="space-y-1 text-gray-300 list-disc list-inside">${r.tips.map(p=>`<li>${p}</li>`).join('')}</ul></div><div><h4 class="font-semibold text-red-400 mb-2">Risk Factors</h4><ul class="space-y-1 text-gray-300 list-disc list-inside">${r.risks.map(p=>`<li>${p}</li>`).join('')}</ul></div></div></div>`}
+        const calculateScalpingScore=(d,vol,volRatio)=>{let s=0;if(volRatio>15)s+=35;else if(volRatio>10)s+=25;else if(volRatio>5)s+=15;if(d.volumeChange>30)s+=25;else if(d.volumeChange>15)s+=15;else if(d.volumeChange>0)s+=5;if(vol>6&&vol<18)s+=25;else if(vol>3&&vol<25)s+=15;if(d.btcDominance>45&&d.btcDominance<65)s+=10;if(d.fearGreed<25||d.fearGreed>75)s+=5;return Math.min(s,100)};const calculateDayTradingScore=(d,vol,altDom)=>{let s=0;if(vol>10&&vol<30)s+=30;else if(vol>5)s+=20;if(Math.abs(d.marketCapChange)>3)s+=25;else if(Math.abs(d.marketCapChange)>1)s+=15;if(d.volumeChange>20)s+=20;else if(d.volumeChange>10)s+=10;if(altDom>30)s+=15;else if(altDom>25)s+=10;if(d.fearGreed<35||d.fearGreed>65)s+=10;return Math.min(s,100)};const calculateSwingTradingScore=(d,sent,altDom)=>{let s=0;if(sent<25)s+=35;else if(sent>75)s+=25;else if(sent>35&&sent<65)s+=15;if(Math.abs(d.marketCapChange)>2&&Math.abs(d.marketCapChange)<12)s+=25;if(d.btcDominance>40&&d.btcDominance<60)s+=20;else if(d.btcDominance<40||d.btcDominance>65)s+=10;if(altDom>35)s+=15;if(d.volumeChange>-10&&d.volumeChange<50)s+=5;return Math.min(s,100)};const getSentimentLabel=s=>{if(s<25)return"Extreme Fear";if(s<45)return"Fear";if(s<55)return"Neutral";if(s<75)return"Greed";return"Extreme Greed"};const getScalpingRecommendation=s=>{const r={score:s};if(s>=70)Object.assign(r,{status:"excellent",recommendation:"Premium scalping conditions",tips:["Target 1-5m timeframes","Focus on BTC/ETH majors","Use 0.1-0.3% profit targets"],risks:["Watch for news events","Monitor order book","Avoid low liquidity hours"]});else if(s>=50)Object.assign(r,{status:"good",recommendation:"Favorable scalping environment",tips:["Use 5-15m charts","Focus on trending pairs","Target 0.2-0.5% profits"],risks:["Avoid choppy periods","Watch spreads","Be patient for setups"]});else Object.assign(r,{status:"poor",recommendation:"Challenging scalping conditions",tips:["Wait for better setups","Use micro sizes","Focus on fewer trades"],risks:["Low volume = high slippage","Tight ranges limit profits","Increased false signals"]});return r};const getDayTradingRecommendation=s=>{const r={score:s};if(s>=70)Object.assign(r,{status:"excellent",recommendation:"Outstanding day trading opportunities",tips:["Use 15-60m timeframes","Breakout/trend strategies","Target 1-3% profits"],risks:["Manage position sizes","Watch for overnight gaps","Set daily loss limits"]});else if(s>=50)Object.assign(r,{status:"good",recommendation:"Solid day trading potential",tips:["Focus on quality setups","Use indicator confluence","1-2% profit targets"],risks:["Avoid overtrading","Watch for false breakouts","Market can reverse quickly"]});else Object.assign(r,{status:"poor",recommendation:"Difficult day trading environment",tips:["Reduce trade frequency","Range-bound strategies","Smaller position sizes"],risks:["Choppy price action","Higher false signal rate","Sideways market grind"]});return r};const getSwingTradingRecommendation=s=>{const r={score:s};if(s>=70)Object.assign(r,{status:"excellent",recommendation:"Exceptional swing trading setup",tips:["Use daily/weekly charts","Target major reversals","5-15% profit targets"],risks:["Hold through volatility","Fundamental changes","Macro economic shifts"]});else if(s>=50)Object.assign(r,{status:"good",recommendation:"Good swing trading conditions",tips:["Focus on weekly trends","Use multiple timeframes","3-8% profit targets"],risks:["Market may chop sideways","Requires patience","Economic events impact"]});else Object.assign(r,{status:"poor",recommendation:"Limited swing opportunities",tips:["Wait for clearer trends","Consider DCA strategies","Reduce position sizes"],risks:["Range-bound markets","Higher whipsaw risk","Trend uncertainty"]});return r};const getOverallMarketCondition=(d,vol,sent,altDom)=>{if(d.marketCapChange>8&&d.volumeChange>25)return{condition:"Explosive Bull Run",icon:"fa-rocket",bgColor:"bg-gradient-to-r from-green-500 to-emerald-600"};if(d.marketCapChange>3&&d.volumeChange>10)return{condition:"Bull Market",icon:"fa-arrow-trend-up",bgColor:"bg-gradient-to-r from-green-600 to-green-700"};if(d.marketCapChange<-8&&d.volumeChange>25)return{condition:"Heavy Selling",icon:"fa-arrow-trend-down",bgColor:"bg-gradient-to-r from-red-600 to-red-700"};if(d.marketCapChange<-3)return{condition:"Bear Market",icon:"fa-arrow-trend-down",bgColor:"bg-gradient-to-r from-red-500 to-red-600"};if(vol>15)return{condition:"High Volatility",icon:"fa-bolt",bgColor:"bg-gradient-to-r from-orange-500 to-orange-600"};if(altDom>35)return{condition:"Altcoin Season",icon:"fa-star",bgColor:"bg-gradient-to-r from-purple-500 to-purple-600"};return{condition:"Consolidation",icon:"fa-pause",bgColor:"bg-gradient-to-r from-blue-500 to-blue-600"}};
+
+    </script>
+</body>
+</html>
